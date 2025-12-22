@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.myvenv/ 
+env/
+
+# ROS / colcon
+build/
+install/
+log/
+
+# ML / Data
+*.pt
+*.pth
+*.onnx
+data/
+datasets/
+rl_env/
+myvenv/
+
+# OS
+.DS_Store

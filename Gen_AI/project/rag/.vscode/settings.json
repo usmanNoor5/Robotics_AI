@@ -1,0 +1,13 @@
+{
+  // Use the project's virtual environment Python interpreter
+  "python.defaultInterpreterPath": "/home/usman/Documents/Robotics_AI/Gen_AI/project/rag/venv/bin/python",
+
+  // Ensure the Python extension auto-activates the environment in the integrated terminal
+  "python.terminal.activateEnvironment": true,
+
+  // Also prepend the venv bin to the integrated terminal PATH on Linux
+  "terminal.integrated.env.linux": {
+    "VIRTUAL_ENV": "/home/usman/Documents/Robotics_AI/Gen_AI/project/rag/venv",
+    "PATH": "/home/usman/Documents/Robotics_AI/Gen_AI/project/rag/venv/bin:${env:PATH}"
+  }
+}
