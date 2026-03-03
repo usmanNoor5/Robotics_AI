@@ -1,23 +1,36 @@
+# ROS 2 build artifacts
+**/build/
+**/install/
+**/log/
+
 # Python
 __pycache__/
 *.pyc
+*.pyo
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
 .venv/
-.myvenv/ 
 env/
 
-# ROS / colcon
-build/
-install/
-log/
-
-# ML / Data
-*.pt
-*.pth
-*.onnx
-data/
-datasets/
-rl_env/
-myvenv/
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
 # OS
 .DS_Store
+Thumbs.db
+
+# Compiled files
+*.o
+*.so
+*.a
+*.dSYM/
+
+# Byte-compiled / cached
+*.py[cod]

@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!-- mobile_base.xacro (wrapped so xacro can parse this file standalone) -->
+<xacro:macro_collection xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- reusable wheel link macro -->
+  <xacro:macro name="wheel_link" params="lname radius length mass mat rpy">
+    <link name="${lname}">
+      <inertial>
+        <xacro:cylinder_inertia m="${mass}" r="${radius}" l="${length}" o_xyz="0 0 0" o_rpy="${pi/2.0} 0 0" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="1.57 0 0"/>
+        <geometry>
+          <cylinder length="${length}" radius="${radius}"/>
+        </geometry>
+        <material name="${mat}"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${rpy}"/>
+        <geometry>
+          <cylinder length="${length}" radius="${radius}"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- reusable caster link macro -->
+  <xacro:macro name="caster_link" params="lname radius mass mat rpy">
+    <link name="${lname}">
+      <inertial>
+        <xacro:sphere_inertia m="${mass}" r="${radius}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="${rpy}"/>
+        <geometry>
+          <sphere radius="${radius}"/>
+        </geometry>
+        <material name="${mat}"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="${rpy}"/>
+        <geometry>
+          <sphere radius="${radius}"/>
+        </geometry>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <!-- generic wheel joint macro -->
+  <xacro:macro name="wheel_joint" params="jname parent child xyz rpy axis type='continuous'">
+    <joint name="${jname}" type="${type}">
+      <parent link="${parent}"/>
+      <child  link="${child}"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+      <axis xyz="${axis}"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- caster joint (fixed) -->
+  <xacro:macro name="caster_joint" params="jname parent child xyz rpy type='fixed'">
+    <joint name="${jname}" type="${type}">
+      <parent link="${parent}"/>
+      <child  link="${child}"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+    </joint>
+  </xacro:macro>
+ 
+<xacro:macro name="cylinder_inertia" params="m r l o_xyz o_rpy">
+<mass value="${m}" />
+<origin xyz="${o_xyz}" rpy="${o_rpy}" />
+<inertia ixx="${(m/12) * (3*r*r + l*l)}" ixy="0" ixz="0" iyy="${(m/12) * (3*r*r + l*l)}" iyz="0" izz="${(m/2) * (r*r)}"/>
+</xacro:macro>
+
+<xacro:macro name="sphere_inertia" params="m r o_xyz o_rpy">
+<mass value="${m}" />
+<origin xyz="${o_xyz}" rpy="${o_rpy}" />
+<inertia ixx="${(2/5) * m * r * r}" ixy="0" ixz="0" iyy="${(2/5) * m * r * r}" iyz="0" izz="${(2/5) * m * r * r}" />
+</xacro:macro>
+
+<xacro:macro name="box_inertia" params="m x y z o_xyz o_rpy">
+<mass value="${m}" />
+<origin xyz="${o_xyz}" rpy="${o_rpy}" />
+<inertia ixx="${(m/12) * (z*z + y*y)}" ixy="0" ixz="0" iyy="${(m/12) * (x*x + z*z)}" iyz="0" izz="${(m/12) * (x*x + y*y)}" />
+</xacro:macro>
+  <!-- composed mobile_base macro (uses the small macros) -->
+  <xacro:macro name="mobile_base" params="">
+
+    <!-- footprint (frame at ground) -->
+    <link name="base_footprint"/>
+
+    <!-- main base link (visual/collision/inertial) -->
+    <link name="base_link">
+      <inertial>
+        <mass value="${base_mass}"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="0.02" ixy="0.0" ixz="0.0" iyy="0.02" iyz="0.0" izz="0.02"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${base_length} ${base_width} ${base_height}"/>
+        </geometry>
+        <material name="gray"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0"/>
+        <geometry>
+          <box size="${base_length} ${base_width} ${base_height}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- instantiate wheels/caster via macros -->
+    <xacro:wheel_link lname="left_wheel_link"  radius="${wheel_radius}" length="${wheel_length}" mass="${wheel_mass}" mat="black" rpy="0 1.5708 0"/>
+    <xacro:wheel_link lname="right_wheel_link" radius="${wheel_radius}" length="${wheel_length}" mass="${wheel_mass}" mat="black" rpy="0 1.5708 0"/>
+    <xacro:caster_link lname="caster_link"    radius="${wheel_radius/2.0}" mass="${caster_mass}" mat="gray"  rpy="0 0 0"/>
+
+    <!-- joints (use joint macros) -->
+    <xacro:wheel_joint jname="base_left_wheel_joint"  parent="base_link" child="left_wheel_link"  xyz="${-base_length/4.0} ${(base_width + wheel_length)/2.0} 0" rpy="0 0 0" axis="0 1 0"/>
+    <xacro:wheel_joint jname="base_right_wheel_joint" parent="base_link" child="right_wheel_link" xyz="${-base_length/4.0} ${-(base_width + wheel_length)/2.0} 0" rpy="0 0 0" axis="0 1 0"/>
+    <xacro:caster_joint jname="base_caster_wheel_joint" parent="base_link" child="caster_link" xyz="${base_length/3.0} 0 ${-base_height/2.0}" rpy="0 0 0"/>
+
+    <!-- attach base to the footprint -->
+    <joint name="base_joint" type="fixed">
+      <parent link="base_footprint"/>
+      <child  link="base_link"/>
+      <origin xyz="0 0 ${wheel_radius + base_height/2.0}" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+</xacro:macro_collection>
