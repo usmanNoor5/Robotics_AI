@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FPS Arena</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="hud">
+      <div class="bar">
+        <span>Player</span>
+        <div class="track">
+          <div id="playerHealth" class="fill"></div>
+        </div>
+      </div>
+      <div class="bar">
+        <span>Enemy</span>
+        <div class="track">
+          <div id="enemyHealth" class="fill"></div>
+        </div>
+      </div>
+      <div id="message" class="message">Click to start (pointer lock)</div>
+      <div id="controls" class="controls">
+        <div><span class="kbd">Arrow Keys</span> move</div>
+        <div><span class="kbd">Mouse</span> look</div>
+        <div><span class="kbd">Space</span> shoot</div>
+      </div>
+      <button id="restartBtn" class="restart" type="button">Restart</button>
+    </div>
+
+    <div id="crosshair" aria-hidden="true"></div>
+
+    <canvas id="game"></canvas>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
+
