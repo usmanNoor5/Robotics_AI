@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 15 23 42;
+  --fg: 248 250 252;
+
+  --muted: 148 163 184;
+  --border: 51 65 85;
+
+  --card: 30 41 59;
+  --card2: 15 23 42;
+
+  --accent: 56 189 248;
+  --accent2: 129 140 248;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--fg));
+  background:
+    radial-gradient(1200px 800px at 20% -10%, rgba(var(--accent2), 0.14), transparent 62%),
+    radial-gradient(900px 600px at 90% 10%, rgba(var(--accent), 0.08), transparent 58%),
+    radial-gradient(700px 500px at 50% 110%, rgba(255, 255, 255, 0.04), transparent 52%),
+    rgb(var(--bg));
+}
+
+::selection {
+  background: rgba(var(--accent), 0.22);
+}
+
+.container {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+}
+
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.10),
+    transparent
+  );
+}
