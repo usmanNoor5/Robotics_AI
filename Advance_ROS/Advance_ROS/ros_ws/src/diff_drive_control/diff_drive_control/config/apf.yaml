@@ -1,0 +1,12 @@
+apf_controller:
+  ros__parameters:
+    max_linear_vel: 1.0
+    max_angular_vel: 1.0
+    kp: 0.5
+    eta: 1.0
+    repulsion_radius: 1.0
+    emergency_stop_dist: 0.25
+    goal_tolerance: 0.15
+    angular_gain: 1.5
+    local_minima_timeout: 5.0
+    goal: [10.0, -1.0]
