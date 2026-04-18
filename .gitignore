@@ -34,3 +34,9 @@ Thumbs.db
 
 # Byte-compiled / cached
 *.py[cod]
+
+# Custom file types
+*.lay
+*.test
+*.solution
+**/CONFIG
