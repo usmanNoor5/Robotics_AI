@@ -40,3 +40,5 @@ Thumbs.db
 *.test
 *.solution
 **/CONFIG
+**/pm
+**/openvla
