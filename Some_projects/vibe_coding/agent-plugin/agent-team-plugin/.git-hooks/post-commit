@@ -1,0 +1,15 @@
+#!/bin/bash
+# Sync agent-team plugin source to installed cache after every commit
+# so Claude Code always runs the latest plugin code.
+#
+# Install with: bash plugins/agent-team/scripts/install-hook.sh
+
+PLUGIN_SRC="$(git rev-parse --show-toplevel)/plugins/agent-team"
+PLUGIN_CACHE="$HOME/.claude/plugins/cache/finally-local-plugins/agent-team/1.0.0"
+
+if [[ -d "$PLUGIN_SRC" ]] && [[ -d "$PLUGIN_CACHE" ]]; then
+  rsync -a --delete \
+    --exclude='.git-hooks' \
+    "$PLUGIN_SRC/" "$PLUGIN_CACHE/"
+  echo "[agent-team] Plugin synced to cache ✓"
+fi

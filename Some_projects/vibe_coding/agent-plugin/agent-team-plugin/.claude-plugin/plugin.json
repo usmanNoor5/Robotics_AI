@@ -1,0 +1,23 @@
+{
+  "name": "agent-team",
+  "version": "1.0.0",
+  "description": "Multi-model agent team framework. Assemble a team of independent AI agents — each powered by a different model (Codex, Copilot, Gemini, Claude) — that collaborate on real engineering tasks. Each agent owns its role, reads its own codebase context, and communicates with teammates through a shared message bus. Claude coordinates without micromanaging.",
+  "author": {
+    "name": "usmanNoor5",
+    "url": "https://github.com/usmanNoor5"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/usmanNoor5/agent-team-plugin",
+  "keywords": [
+    "multi-agent",
+    "agent-team",
+    "multi-model",
+    "codex",
+    "copilot",
+    "gemini",
+    "orchestration",
+    "collaboration",
+    "peer-agents",
+    "team"
+  ]
+}

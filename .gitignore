@@ -13,7 +13,40 @@ __pycache__/
 # Virtual environments
 venv/
 .venv/
+env/
 .env/
+*_env/
+*env/
+
+# Node
+node_modules/
+.npm/
+dist/
+.next/
+.nuxt/
+
+# Python testing / caching
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Archives
+*.zip
+*.tar.gz
+*.tar.bz2
+*.rar
+
+# Large / third-party cloned repos (add as submodules instead)
+Advance_ROS/project/gtsam/
+Advance_ROS/project/TEASER-plusplus/
+Advance_ROS/project/Swarm-SLAM/
 
 # IDE
 .vscode/

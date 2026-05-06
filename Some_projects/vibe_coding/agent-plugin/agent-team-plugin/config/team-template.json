@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "name": "My Dev Team",
+  "_comment": "Copy this to your project root as team.json and edit it. Run /agent-team:setup for an interactive wizard instead.",
+  "roles": [
+    {
+      "id": "frontend",
+      "name": "Frontend Engineer",
+      "model": "codex",
+      "_model_options": ["codex", "opencode", "copilot", "gemini", "claude"],
+      "context_dirs": ["frontend/", "public/"],
+      "expertise": "React, TypeScript, CSS, Next.js, UI components"
+    },
+    {
+      "id": "backend",
+      "name": "Backend Engineer",
+      "model": "copilot",
+      "context_dirs": ["backend/", "db/"],
+      "expertise": "Python, FastAPI, SQLite, REST APIs, background tasks"
+    },
+    {
+      "id": "tester",
+      "name": "QA Engineer",
+      "model": "gemini",
+      "context_dirs": ["test/", "frontend/", "backend/"],
+      "expertise": "Testing, Playwright E2E, pytest, test strategy"
+    }
+  ]
+}
