@@ -1,0 +1,71 @@
+# PDF files (store locally, too large for git)
+*.pdf
+*.PDF
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+*_env/
+*env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Node
+node_modules/
+dist/
+.next/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large model/dataset files
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.hdf5
+*.pkl
+*.npy
+*.npz
+
+# Archives
+*.zip
+*.tar.gz
+*.tar.bz2
+*.rar
+
+# Build artifacts
+build/
+install/
+log/
+
+# Testing / coverage
+.pytest_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+
+# Specific ignored dirs
+openvla/
