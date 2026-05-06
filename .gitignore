@@ -48,6 +48,9 @@ Advance_ROS/project/gtsam/
 Advance_ROS/project/TEASER-plusplus/
 Advance_ROS/project/Swarm-SLAM/
 
+# thesis/ is its own independent git repo — managed separately
+thesis/
+
 # IDE
 .vscode/
 .idea/
